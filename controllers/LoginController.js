@@ -13,9 +13,9 @@ class LoginController {
    */
   async index(req, res) {
     if (req.cookies.jwt) {
-      return res.redirect('/users');
+      return res.redirect("/users");
     }
-    return res.render('partial/login', { req });
+    return res.render("partial/login", { req });
   }
 
   // async index(req, res) {
@@ -24,21 +24,20 @@ class LoginController {
 
   async login(req, res) {
     try {
-
       let user = await UserModel.findOne({
         where: {
           email: req.body.email,
-          status: "active"
+          status: "active",
         },
       });
       if (!user) {
-        req.toastr.error('User not exists.');
-        return res.redirect('/');
+        req.toastr.error("User not exists.");
+        return res.redirect("/");
       }
       let pass = await bcrypt.compare(req.body.password, user.password);
       if (!pass) {
-        req.toastr.error('Invalid credentials.');
-        return res.redirect('/');
+        req.toastr.error("Invalid credentials.");
+        return res.redirect("/");
       }
       let token = jwt.sign(
         {
@@ -52,16 +51,16 @@ class LoginController {
         maxAge: 900000, // 3hrs in ms
       });
       if (token) {
-        req.toastr.success('Successfully logged in.', "You're in!");
-        return res.redirect('/users');
+        return res.redirect("/users");
       }
     } catch (error) {
-      req.toastr.error('Something went wrong.');
-      return res.redirect('/');
+      return res.redirect("/");
     }
-
   }
 
-
+  async logout(req, res) {
+    res.clearCookie("jwt");
+    return res.redirect("/");
+  }
 }
 module.exports = new LoginController();

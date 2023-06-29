@@ -33,9 +33,9 @@
                     <td><%-user.phone%></td>
                     <td><%-user.gender%></td>
                     <td><%-user.status%></td>
-                    <td><%-user.date%></td>
+                    <td><%-moment(user.date).format("DD-MM-YYYY")%></td>
                     <td>
-                        <%-user.profile_pic%></td>
+                        <img src='<%-url+"/"+user.profile_pic%>' alt='no image' style="width:50px; height: 50px;"></td>
                     <td>
                         <a href="users/edit/<%-user.id%>">edit </a>
                         <a href="users/delete/<%-user.id%>">Delete </a>

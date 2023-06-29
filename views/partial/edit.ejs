@@ -14,9 +14,10 @@
 
                     </div>
 
-                    <form class="row g-3 needs-validation" enctype="multipart/form-data" novalidate action='/users'
+                    <form class="row g-3 needs-validation" enctype="multipart/form-data" novalidate action='/users/update'
                         method='post'>
                         <div class="col-12">
+                            <input type="hidden" name="id" value="<%-user.id%>">
                             <label for="Name" class="form-label">Name</label>
                             <input type="text" name="name" class="form-control" id="Name" value='<%-user.name%>' required>
                             <div class="invalid-feedback">Please, enter your name</div>
@@ -38,30 +39,38 @@
                             </div>
                         </div>
                         <div class="col-12">
+                            <label class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-12">
+                                <select class="form-select" aria-label="Default select example" name='status'>
+                                    <option value="pending"<%-user.status === 'pending' ? 'selected' : '' %> >Pending</option>
+                                    <option value="active"<%-user.status === 'active' ? 'selected' : '' %>>Active</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
                             <label for="yourEmail" class="form-label">phone</label>
                             <input type="text" name="phone" class="form-control" id="phone" value='<%-user.phone%>'required>
                             <div class="invalid-feedback">Please enter phone no!</div>
                         </div>
                         <div class="col-12">
-                            <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                            <label for="inputDate" class="col-sm-2 col-form-label">Date </label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" name='date' required value='<%-user.date%>'>
+                                <input type="date" class="form-control" name='date' required value='<%= moment(user.date).format("YYYY-MM-DD")%>'>
                                 <div class="invalid-feedback">
                                     Please select a date.
                                 </div>
                             </div>
-                            <%-user.date%>
                         </div>
                         <div class="col-12">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Image</label>
                             <div class="col-sm-12">
-                                <input class="form-control" type="file" id="formFile" name='profile_pic' required>
-                                <div class="invalid-feedback">
+                                <input class="form-control" type="file" id="formFile" name='profile_pic'>
+                                <!-- <div class="invalid-feedback">
                                     Please select a image.
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                        <img src='<%-user.name%>'alt='no image'>
+                        <img src='<%-url+"/"+user.profile_pic%>'alt='no image' style="width:100px; height: 100px;">
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Submit
                             </button>

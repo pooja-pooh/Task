@@ -13,6 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       email: {
+        unique: true,
         type: Sequelize.STRING,
       },
       gender: {
@@ -20,9 +21,10 @@ module.exports = {
         values: ["male", "female", "other"],
       },
       phone: {
+        unique: true,
         type: Sequelize.STRING,
       },
-      Password: {
+      password: {
         type: Sequelize.STRING,
       },
       status: {

@@ -1,0 +1,61 @@
+ <%- include('../common/header') -%>
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10"><h5 class="card-title">Users List</h5></div>
+                    <div class="col-md-2 mt-4"><a href="/users/create" class="btn btn-dark" style="float:right">Create</a></div>
+                </div>  
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <%usersList.forEach((user,index)=>{ %>
+<tr>
+                    <th scope="row"><%-index+1%></th>
+                    <td><%-user.name%></td>
+                    <td><%-user.email%></td>
+                    <td><%-user.phone%></td>
+                    <td><%-user.gender%></td>
+                    <td><%-user.status%></td>
+                    <td><%-user.date%></td>
+                    <td>
+                        <%-user.profile_pic%></td>
+                    <td>
+                        <a href="users/edit/<%-user.id%>">edit </a>
+                        <a href="users/delete/<%-user.id%>">Delete </a>
+                        <!-- <form action="users/delete/<%=user.id%>" method="GET">
+                            <button type="submit">delete </button>
+                        </form> -->
+                    </td>
+          
+                  </tr>
+                   <% })%>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+<%- include('../common/footer') -%> 

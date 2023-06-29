@@ -1,0 +1,87 @@
+ <%- include('../common/header') -%>
+
+    
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+                                <div class="card mb-12">
+
+                                    <div class="card-body">
+
+                                        <div class="pt-4 pb-2">
+                                            <h5 class="card-title text-center pb-0 fs-4">Create User</h5>
+
+                                        </div>
+
+                                        <form class="row g-3 needs-validation" enctype="multipart/form-data" novalidate action='/users'method='post'>
+                                            <div class="col-12">
+                                                <label for="Name" class="form-label">Name</label>
+                                                <input type="text" name="name" class="form-control" id="Name" required>
+                                                <div class="invalid-feedback">Please, enter your name</div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <label for="Email" class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control" id="Email"
+                                                    required>
+                                                <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="col-sm-2 col-form-label">Gender</label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-select" aria-label="Default select example" name='gender'>
+                                                        <option value="1" selected>Male</option>
+                                                        <option value="2">Female</option>
+                                                        <option value="3">Other</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="yourEmail" class="form-label">phone</label>
+                                                <input type="text" name="phone" class="form-control" id="phone"
+                                                    required>
+                                                <div class="invalid-feedback">Please enter phone no!</div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="Password" class="form-label">Password</label>
+                                                <input type="password" name="password" class="form-control"
+                                                    id="yourPassword" required>
+                                                <div class="invalid-feedback">Please enter your password!</div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                                                <div class="col-sm-12">
+                                                    <input type="date" class="form-control" name='date' required>
+                                                    <div class="invalid-feedback">
+                                                        Please select a date.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputNumber" class="col-sm-2 col-form-label">Image</label>
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" type="file" id="formFile"  name='profile_pic'required>
+                                                <div class="invalid-feedback">
+                                                        Please select a image.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary" type="submit">Submit
+                                                    </button>
+                                                    <a href="/users" class="btn btn-secondary">Back</a>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+    
+<%- include('../common/footer') -%> 

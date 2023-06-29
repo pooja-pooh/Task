@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         values: ["male", "female", "other"],
       },
       phone: DataTypes.STRING,
-      Password: DataTypes.STRING,
+      password: DataTypes.STRING,
       status: {
         type: Sequelize.ENUM,
         values: ["active", "pending", "deleted"],

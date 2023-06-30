@@ -36,7 +36,7 @@ class LoginController {
       }
       let pass = await bcrypt.compare(req.body.password, user.password);
       if (!pass) {
-        req.toastr.error("Invalid credentials.");
+        req.flash("error", "Invalid credentials.");
         return res.redirect("/");
       }
       let token = jwt.sign(
@@ -51,15 +51,27 @@ class LoginController {
         maxAge: 900000, // 3hrs in ms
       });
       if (token) {
+        req.flash("success", "Login success");
         return res.redirect("/users");
       }
     } catch (error) {
+      req.flash("error", "Sothing went wrong");
       return res.redirect("/");
     }
   }
-
+  /**
+   * Logout
+   * @param {*} req 
+   * @param {*} res 
+   * @returns 
+   */
   async logout(req, res) {
     res.clearCookie("jwt");
+    req.flash("success", "User logout");
+    // res.render('/', { expressFlash: req.flash('success') });
+    //     <% if (expressFlash.length > 0) { %>
+    //   <p>Message: <%= expressFlash %> </p>
+    // <% } %>
     return res.redirect("/");
   }
 }

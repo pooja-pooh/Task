@@ -1,0 +1,5 @@
+id,name,email,phone,gender,status,createdAt
+5,demo,demo@getnada.com,23456789,female,pending,06-29-2023
+7,test,admin1@getnada.com,8619103855,male,pending,06-29-2023
+9,jgsjd,adsadsmin@getnada.com,347890345678,male,pending,06-29-2023
+10,sok,sok@getnada.com,1234567890,male,active,06-30-2023

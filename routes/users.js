@@ -8,15 +8,7 @@ router.post("/", fileupload.single("profile_pic"), UserController.store);
 router.get("/", AuthMiddleware.getToken, UserController.index);
 router.get("/create", AuthMiddleware.getToken, UserController.create);
 router.get("/edit/:id", AuthMiddleware.getToken, UserController.edit);
-/* GET users listing. */
-/* GET users listing. */
-router.post(
-  "/update",
-  fileupload.single("profile_pic"),
-  AuthMiddleware.getToken,
-  UserController.update
-);
-/* GET users listing. */
+router.get("/csv", AuthMiddleware.getToken, UserController.getjsontoCsvData);
+router.post("/update", fileupload.single("profile_pic"), AuthMiddleware.getToken, UserController.update);
 router.get("/delete/:id", AuthMiddleware.getToken, UserController.destroy);
-
 module.exports = router;

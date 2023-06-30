@@ -2,8 +2,10 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cors = require("cors");
+const session = require('express-session');
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const flash = require('connect-flash');
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -11,6 +13,18 @@ var usersRouter = require("./routes/users");
 var app = express();
 app.use(cors());
 // view engine setup
+
+app.use(session({
+  secret: 'something',
+  cookie: { maxAge: 60000 },
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(flash());
+app.use(function (req, res, next) {
+  res.locals.message = req.flash();
+  next();
+});
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -19,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "data")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
